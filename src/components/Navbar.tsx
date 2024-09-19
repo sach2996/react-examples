@@ -66,7 +66,7 @@ export default function Navbar() {
                 location.pathname === item.path ? activeStyle : inActiveStyle
               }
             >
-              <img src={item.image} width={"20px"} height={"20px"} />{" "}
+              <img src={item.image} width={"15px"} height={"15px"} />{" "}
               <span>{item.label}</span>
             </Link>
           </div>

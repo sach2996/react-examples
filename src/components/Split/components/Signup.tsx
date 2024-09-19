@@ -36,6 +36,7 @@ function Signup() {
       setToken(response.data.token);
       setUser(response.data);
       localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user", response.data);
       // Store the token (e.g., using localStorage or a state management library)
       // Redirect to the login page or another appropriate route
       navigate("/");

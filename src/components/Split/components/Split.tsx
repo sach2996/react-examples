@@ -5,7 +5,7 @@ import Balances from "./Balances";
 import axios from "axios";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
-import { useSetRecoilState, useRecoilValue } from "recoil";
+import { useSetRecoilState, useRecoilState } from "recoil";
 import { expenseAtom, userExpenseAtom } from "../store/expense";
 import { tokenAtom } from "../store/token";
 import Topbar from "./Topbar";
@@ -14,11 +14,16 @@ export default function Split() {
   const navigate = useNavigate(); // Use useNavigate hook for redirection
 
   const setExpense = useSetRecoilState(expenseAtom);
-  const token = useRecoilValue(tokenAtom);
+  const [token, setToken] = useRecoilState(tokenAtom);
 
   const setUserExpense = useSetRecoilState(userExpenseAtom);
 
   useEffect(() => {
+    const localStorageItem = localStorage.getItem("token");
+    console.log(localStorageItem);
+    if (localStorageItem) {
+      setToken(localStorageItem);
+    }
     const getExpenses = async (username: string) => {
       try {
         const headers = {
