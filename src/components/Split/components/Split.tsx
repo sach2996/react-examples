@@ -9,9 +9,10 @@ import { useSetRecoilState, useRecoilValue } from "recoil";
 import { expenseAtom, userExpenseAtom } from "../store/expense";
 import { tokenAtom } from "../store/token";
 import Topbar from "./Topbar";
-
+import config from "../../../../config";
 export default function Split() {
   const navigate = useNavigate(); // Use useNavigate hook for redirection
+
   const setExpense = useSetRecoilState(expenseAtom);
   const token = useRecoilValue(tokenAtom);
 
@@ -24,7 +25,7 @@ export default function Split() {
           Authorization: `Bearer ${token}`,
         };
         const response = await axios.get(
-          `http://localhost:3000/api/split/transaction/${username}`,
+          `${config.backendUrl}/api/split/transaction/${username}`,
           { headers }
         );
         setExpense(response.data.transactions);

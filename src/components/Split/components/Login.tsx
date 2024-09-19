@@ -4,7 +4,7 @@ import { userAtom } from "../store/user";
 import axios from "axios";
 import { tokenAtom } from "../store/token";
 import { useNavigate } from "react-router-dom";
-
+import config from "../../../../config";
 function Login() {
   const navigate = useNavigate();
 
@@ -19,13 +19,10 @@ function Login() {
     // Validate input
 
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/auth/login",
-        {
-          username: username,
-          password,
-        }
-      );
+      const response = await axios.post(`${config.backendUrl}/api/auth/login`, {
+        username: username,
+        password,
+      });
       setToken(response.data.token);
       setUser(response.data);
       localStorage.setItem("token", response.data.token);
