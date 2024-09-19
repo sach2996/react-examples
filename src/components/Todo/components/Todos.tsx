@@ -14,7 +14,15 @@ export default function Todos() {
   const totalPages = useRecoilValue(totalPagesAtom);
 
   const todosList: ITodo[] = useRecoilValue(todoAtam);
-  console.log(todosList);
+
+  const inActiveStyle = {
+    color: "white",
+    fontWeight: "bold",
+    textDecoration: "none",
+    background: "rgb(65, 62, 62)",
+    border: "1px solid white",
+  };
+
   return (
     <div className="todo-section">
       {todosList.map((item) => (
@@ -24,7 +32,7 @@ export default function Todos() {
             {/* {item.userId} */}
           </div>
           <div className="todo-item">
-            <button>
+            <button style={item.completed === false ? {} : inActiveStyle}>
               {item.completed === false ? "Mark As Completed" : "Completed"}
             </button>
           </div>

@@ -26,7 +26,6 @@ export default function Todo() {
             (currentPage - 1) * itemsPerPage
           }`
         );
-        console.log(response.data);
         setTodos(response.data.todos);
         setTotalPages(Math.ceil(response.data.total / itemsPerPage));
       } catch (error) {

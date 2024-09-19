@@ -10,7 +10,6 @@ export default function CreateTodo() {
 
   async function handleAddTodo() {
     try {
-      console.log("Todo added", title, userId);
       setUserId(6);
       const reqBody = {
         todo: title,
@@ -30,7 +29,6 @@ export default function CreateTodo() {
       //       https://dummyjson.com/docs/todos
       //       Adding a new todo will not add it into the server.
       // It will simulate a POST request and will return the new created todo with a new id
-      console.log(response);
       const result = response.data;
       setTodos(result);
     } catch (error) {
