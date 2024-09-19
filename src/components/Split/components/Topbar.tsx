@@ -27,6 +27,7 @@ export default function Topbar() {
       debit: 0,
     });
     localStorage.removeItem("token");
+    localStorage.removeItem("user");
     navigate("/login");
   }
   return (
