@@ -4,6 +4,7 @@ import { userAtom } from "../store/user";
 import axios from "axios";
 import { tokenAtom } from "../store/token";
 import { useNavigate } from "react-router-dom";
+import config from "../../../../config";
 
 function Signup() {
   const navigate = useNavigate();
@@ -23,7 +24,7 @@ function Signup() {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/auth/signup",
+        `${config.backendUrl}/api/auth/signup`,
         {
           username: username,
           email: email,
