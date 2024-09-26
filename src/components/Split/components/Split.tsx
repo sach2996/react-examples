@@ -20,19 +20,17 @@ export default function Split() {
 
   useEffect(() => {
     const localStorageItem = localStorage.getItem("token");
-    console.log(localStorageItem);
     if (localStorageItem) {
       setToken(localStorageItem);
     }
-    const getExpenses = async (username: string) => {
+    const getExpenses = async () => {
       try {
         const headers = {
           Authorization: `Bearer ${token}`,
         };
-        const response = await axios.get(
-          `${config.backendUrl}/api/split/transaction/${username}`,
-          { headers }
-        );
+        const response = await axios.get(`${config.backendUrl}/api/balance`, {
+          headers,
+        });
         setExpense(response.data.transactions);
         setUserExpense(response.data);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -41,7 +39,7 @@ export default function Split() {
       }
     };
     if (token) {
-      getExpenses("testuser");
+      getExpenses();
     } else {
       return navigate("/login");
     }
