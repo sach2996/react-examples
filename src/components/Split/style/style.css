@@ -47,7 +47,7 @@
 }
 
 .balances-top-bar button {
-    background-color: #ff8700;
+    background-color: #124E66;
     color: white;
     border-radius: 4px;
     border-style: none;
@@ -106,6 +106,7 @@
 
 .add-expense-container {
     height: 40vh;
+    font: 1rem "Fira Sans", sans-serif;
 }
 
 .add-expense-section {
@@ -119,6 +120,10 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+}
+
+.add-expense-section-item input {
+    height: 2rem;
 }
 
 .expense-item {
@@ -165,7 +170,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: #c9c9c9;
+    background: #748D92;
     margin-left: 32%;
     margin-right: 32%;
     margin-top: 5%;
@@ -192,7 +197,7 @@
     height: 2rem;
     border-radius: 4px;
     border: none;
-    background-color: #ff8700;
+    background-color: #124E66;
     color: white;
 }
 
@@ -200,10 +205,81 @@ button {
     height: 2rem;
     border-radius: 4px;
     border: none;
-    background-color: #ff8700;
+    background-color: #124E66;
     color: white;
 }
 
+.friends-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: x-large;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    border: 1px solid #bebcbc;
+    border-radius: 4px;
+    height: 4rem;
+    margin-bottom: 1rem;
+}
+
+.friend-item {
+    display: flex;
+    align-items: center;
+    width: 40%;
+    border: 1px solid #bebcbc;
+    border-radius: 4px;
+    /* font-size: large; */
+    font-weight: bold;
+    padding: 16px;
+    margin-bottom: 1rem;
+    background-color: white;
+}
+
+.round-div {
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #acafff;
+    overflow: hidden;
+}
+
+.user-profile {
+    width: 25px;
+    height: 25px;
+    font-size: 12px;
+    margin-right: 4px;
+}
+
+.group-profile {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    margin-right: 8px;
+}
+
+.group-item {
+    display: flex;
+    align-items: center;
+    border: 1px solid #bebcbc;
+    border-radius: 4px;
+    font-weight: bold;
+    padding: 16px;
+    margin-bottom: 1rem;
+    background-color: white;
+}
+
+.group-item p {
+    font-weight: 100;
+    font-size: small;
+    margin: 0px;
+}
+
+.group-details {
+    display: flex;
+    flex-direction: column;
+}
 
 @media (max-width: 768px) {
     .split-home {
@@ -263,7 +339,7 @@ button {
     }
 
     .balances-top-bar button {
-        background-color: #ff8700;
+        background-color: #124E66;
         color: white;
         border-radius: 4px;
         border-style: none;
@@ -386,7 +462,7 @@ button {
         display: flex;
         flex-direction: column;
         align-items: center;
-        background: #c9c9c9;
+        background: #748D92;
         margin-left: 5%;
         margin-right: 5%;
         margin-top: 10%;
@@ -416,7 +492,7 @@ button {
         height: 2rem;
         border-radius: 4px;
         border: none;
-        background-color: #ff8700;
+        background-color: #124E66;
         color: white;
     }
 
@@ -424,7 +500,59 @@ button {
         height: 2rem;
         border-radius: 4px;
         border: none;
-        background-color: #ff8700;
+        background-color: #124E66;
         color: white;
+    }
+
+
+    .friends-top-bar {
+        margin-left: 4px;
+        margin-right: 4px;
+    }
+
+    .friend-item {
+        margin-left: 4px;
+        margin-right: 4px;
+        width: inherit;
+    }
+
+    .round-div {
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #acafff;
+        overflow: hidden;
+    }
+
+    .user-profile {
+        width: 25px;
+        height: 25px;
+        font-size: 12px;
+        margin-right: 4px;
+    }
+
+    .group-profile {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+        margin-right: 8px;
+    }
+
+    .group-item {
+        margin-left: 4px;
+        margin-right: 4px;
+        width: inherit;
+    }
+
+    .group-item p {
+        font-weight: 100;
+        font-size: small;
+        margin: 0px;
+    }
+
+    .group-details {
+        display: flex;
+        flex-direction: column;
     }
 }

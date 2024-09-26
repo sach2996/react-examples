@@ -1,5 +1,6 @@
-import { useState } from "react";
 import AddExpense from "./AddExpense";
+import { useRecoilState } from "recoil";
+import { showModalAtom } from "../store/showModal";
 
 // interface UserExpenses {
 //   username: string;
@@ -38,22 +39,22 @@ interface Share {
 }
 
 export default function Balances() {
-  const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useRecoilState(showModalAtom);
 
   const handleAddExpense = () => {
     setShowModal(true);
   };
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
+  // const handleCloseModal = () => {
+  //   setShowModal(false);
+  // };
   return (
     <div className="balances-screen">
       <div className="balances-top-bar">
         <h4>Balances</h4>
         <span>
           <button onClick={handleAddExpense}>Add Expense</button>
-          <button>Settle Up</button>
+          <button hidden>Settle Up</button>
         </span>
       </div>
 
@@ -61,7 +62,10 @@ export default function Balances() {
       {showModal && (
         <div className="modal">
           <div className="modal-content">
-            <button className="close-button" onClick={handleCloseModal}>
+            <button
+              className="close-button"
+              onClick={() => setShowModal(false)}
+            >
               X
             </button>
             <AddExpense />
