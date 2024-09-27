@@ -52,7 +52,7 @@ export default function Navbar() {
     { path: "/activity", label: "Activity", image: "public/activity.svg" },
     { path: "/friends", label: "Friends", image: "public/friends.svg" },
     { path: "/groups", label: "Groups", image: "public/groups.svg" },
-    // { path: "/expenses", label: "Expense", image: "public/expense.svg" },
+    { path: "/expenses", label: "Expense", image: "public/expense.svg" },
     // { path: "/import", label: "Import", image: "public/import.svg" },
   ];
   return (

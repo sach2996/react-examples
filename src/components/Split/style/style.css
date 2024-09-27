@@ -236,6 +236,22 @@ button {
     background-color: white;
 }
 
+.friend-item-left {
+    display: flex;
+    align-items: center;
+    width: 70%;
+}
+
+.friend-item-right {
+    display: flex;
+    justify-content: flex-end;
+    width: 30%;
+    border-radius: 6px;
+    font-size: smaller;
+    font-weight: initial;
+    padding: 2px;
+}
+
 .round-div {
     border-radius: 50%;
     display: flex;
@@ -279,6 +295,22 @@ button {
 .group-details {
     display: flex;
     flex-direction: column;
+}
+
+.group-details-left {
+    display: flex;
+    align-items: center;
+    width: 70%;
+}
+
+.group-details-right {
+    display: flex;
+    justify-content: flex-end;
+    width: 30%;
+    border-radius: 6px;
+    font-size: smaller;
+    font-weight: initial;
+    padding: 2px;
 }
 
 @media (max-width: 768px) {
