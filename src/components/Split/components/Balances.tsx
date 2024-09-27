@@ -1,14 +1,32 @@
 import AddExpense from "./AddExpense";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { showModalAtom } from "../store/showModal";
+import { balanceAtom } from "../store/balance";
+import ProfilePicture from "./ProfilePicture";
+import { friendsAtom } from "../store/friends";
 
-// interface UserExpenses {
+// interface UserBalance {
 //   username: string;
-//   email: string;
-//   balance: number;
 //   owed: number;
-//   paid: number;
-//   transactions: TransactionItem[];
+//   groups: Group[];
+//   friends: Friend[];
+// }
+
+// interface Group {
+//   groupName: string;
+//   balance: number;
+// }
+
+interface Friends {
+  username: string;
+  email: string;
+  firstname: string;
+  lastname: string;
+  balance: number;
+}
+// interface Friend {
+//   username: string;
+//   balance: number;
 // }
 export interface TransactionItem {
   transaction: Transaction;
@@ -41,6 +59,9 @@ interface Share {
 export default function Balances() {
   const [showModal, setShowModal] = useRecoilState(showModalAtom);
 
+  const balance = useRecoilValue(balanceAtom);
+  const friends = useRecoilValue(friendsAtom);
+
   const handleAddExpense = () => {
     setShowModal(true);
   };
@@ -57,8 +78,66 @@ export default function Balances() {
           <button hidden>Settle Up</button>
         </span>
       </div>
+      {/* {balance.groups.map(
+        (item: Group) =>
+          item.groupName != "null" && (
+            <div className="balances-bottom-bar" key={item.groupName}>
+              {item.groupName} {item.balance}
+            </div>
+          )
+      )} */}
+      {/* {balance.friends.map((item: Friend) => (
+        <div className="balances-bottom-bar" key={item.username}>
+          {item.username} {item.balance}
+        </div>
+      ))} */}
+      {friends.map((friend: Friends) => (
+        <div key={friend.username} className="friend-item">
+          <div className="friend-item-left">
+            <ProfilePicture
+              firstName={friend.firstname}
+              lastName={friend.lastname}
+            />
+            {friend.firstname} {friend.lastname}
+          </div>
+          <div className="friend-item-right">
+            {friend.balance < 0 && (
+              <span
+                style={{
+                  backgroundColor: "#fca5a5",
+                  padding: "2px",
+                  borderRadius: "6px",
+                }}
+              >
+                You owe CAD $ {friend.balance}
+              </span>
+            )}
+            {friend.balance > 0 && (
+              <span
+                style={{
+                  backgroundColor: "#aed1ae",
+                  padding: "2px",
+                  borderRadius: "6px",
+                }}
+              >
+                Owes you CAD $ {friend.balance}
+              </span>
+            )}
+            {friend.balance == 0 && (
+              <span
+                style={{
+                  backgroundColor: "#e0e0e0",
+                  padding: "2px",
+                  borderRadius: "6px",
+                }}
+              >
+                You are settled up.
+              </span>
+            )}
+          </div>
+        </div>
+      ))}
 
-      <div className="balances-bottom-bar">sample</div>
       {showModal && (
         <div className="modal">
           <div className="modal-content">

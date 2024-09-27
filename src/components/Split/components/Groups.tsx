@@ -9,16 +9,26 @@ import axios from "axios";
 import config from "../../../../config";
 import GroupProfile from "./GroupProfile";
 import ProfilePicture from "./ProfilePicture";
+import { balanceAtom } from "../store/balance";
+import { useNavigate } from "react-router-dom";
 
 interface Group {
   groupName: string;
   description: string;
   users: Friend[];
+  transactions: string;
 }
 
+interface GroupItem {
+  groupName: string;
+  balance: number;
+}
 export default function Groups() {
+  const navigate = useNavigate();
   const [groups, setGroups] = useRecoilState(groupsAtom);
   const token = useRecoilValue(tokenAtom);
+
+  const balance = useRecoilValue(balanceAtom);
 
   useEffect(() => {
     const groupsList = async () => {
@@ -27,7 +37,6 @@ export default function Groups() {
           headers: { Authorization: `Bearer ${token}` },
         });
         setGroups(response.data.groups);
-
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         console.error("Error fetching data:", error);
@@ -36,6 +45,8 @@ export default function Groups() {
 
     if (token) {
       groupsList();
+    } else {
+      return navigate("/login");
     }
   }, []);
   return (
@@ -50,27 +61,74 @@ export default function Groups() {
         <div>
           {groups.map((group: Group) => (
             <div key={group.groupName} className="group-item">
-              <GroupProfile firstName={group.groupName} lastName="G" />
-              <div className="group-details">
-                {group.groupName}
+              <div className="group-details-left" style={{ display: "flex" }}>
+                <div>
+                  <GroupProfile firstName={group.groupName} lastName="G" />
+                </div>
+                <div className="group-details">
+                  {group.groupName}
 
-                <p>
-                  {group.users.map((user: Friend, index) => (
-                    <span key={user.username} style={{ marginRight: "2px" }}>
-                      {user.firstname}
-                      {index === group.users.length - 1 ? "" : ","}
-                    </span>
-                  ))}
-                </p>
-                <div style={{ display: "flex" }}>
-                  {group.users.map((user: Friend) => (
-                    <ProfilePicture
-                      firstName={user.firstname}
-                      lastName={user.lastname}
-                    />
-                  ))}
+                  <p>
+                    {group.users.map((user: Friend, index) => (
+                      <span key={user.username} style={{ marginRight: "2px" }}>
+                        {user.firstname}
+                        {index === group.users.length - 1 ? "" : ","}
+                      </span>
+                    ))}
+                  </p>
+                  <div style={{ display: "flex" }}>
+                    {group.users.map((user: Friend) => (
+                      <ProfilePicture
+                        firstName={user.firstname}
+                        lastName={user.lastname}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
+              {balance.groups.map(
+                (groupItem: GroupItem) =>
+                  group.groupName === groupItem.groupName && (
+                    <div
+                      key={groupItem.balance}
+                      className="group-details-right"
+                    >
+                      {groupItem.balance > 0 && (
+                        <span
+                          style={{
+                            backgroundColor: "#aed1ae",
+                            padding: "2px",
+                            borderRadius: "6px",
+                          }}
+                        >
+                          You get CAD $ {groupItem.balance}
+                        </span>
+                      )}
+                      {groupItem.balance < 0 && (
+                        <span
+                          style={{
+                            backgroundColor: "#fca5a5",
+                            padding: "2px",
+                            borderRadius: "6px",
+                          }}
+                        >
+                          You owe CAD $ {groupItem.balance}
+                        </span>
+                      )}
+                      {groupItem.balance == 0 && (
+                        <span
+                          style={{
+                            backgroundColor: "#e0e0e0",
+                            padding: "2px",
+                            borderRadius: "6px",
+                          }}
+                        >
+                          You are settled up.
+                        </span>
+                      )}
+                    </div>
+                  )
+              )}
             </div>
           ))}
         </div>

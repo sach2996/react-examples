@@ -27,6 +27,9 @@ function Login() {
       setUser(response.data.user.user);
       localStorage.setItem("token", response.data.user.token);
       localStorage.setItem("user", response.data.user.user);
+      localStorage.setItem("username", response.data.user.user.username);
+      localStorage.setItem("firstname", response.data.user.user.firstname);
+      localStorage.setItem("lastname", response.data.user.user.lastname);
       // Store the token (e.g., using localStorage or a state management library)
       // Redirect to the login page or another appropriate route
       navigate("/");

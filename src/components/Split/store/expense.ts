@@ -7,8 +7,11 @@ export const expenseAtom = atom({
 export const userExpenseAtom = atom({
   key: "userExpenseAtom",
   default: {
+    username: "",
+    owe: 0,
+    receive: 0,
     balance: 0,
-    credit: 0,
-    debit: 0,
+    paid: 0,
+    transactions: [],
   },
 });

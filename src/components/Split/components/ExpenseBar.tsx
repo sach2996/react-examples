@@ -10,6 +10,7 @@ export default function ExpenseBar() {
   ];
 
   const userExpense = useRecoilValue(userExpenseAtom);
+  console.log(userExpense);
   items.map((item) => {
     if (item.type === "balance") {
       item.balance = formatCurrency(userExpense.balance);
@@ -17,15 +18,13 @@ export default function ExpenseBar() {
     if (item.type === "get") {
       item.balance = (
         <b style={{ color: "green" }}>
-          CA$ {(userExpense.debit / 100).toFixed(2)}
+          CA$ {(userExpense.receive / 100).toFixed(2)}
         </b>
       );
     }
     if (item.type === "owe" && userExpense) {
       item.balance = (
-        <b style={{ color: "red" }}>
-          CA$ {(userExpense.credit / 100).toFixed(2)}
-        </b>
+        <b style={{ color: "red" }}>CA$ {(userExpense.owe / 100).toFixed(2)}</b>
       );
     }
   });
