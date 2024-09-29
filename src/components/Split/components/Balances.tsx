@@ -12,10 +12,10 @@ import { friendsAtom } from "../store/friends";
 //   friends: Friend[];
 // }
 
-// interface Group {
-//   groupName: string;
-//   balance: number;
-// }
+interface Group {
+  groupName: string;
+  balance: number;
+}
 
 interface Friends {
   username: string;
@@ -23,6 +23,7 @@ interface Friends {
   firstname: string;
   lastname: string;
   balance: number;
+  groups: Group[];
 }
 // interface Friend {
 //   username: string;
@@ -93,47 +94,91 @@ export default function Balances() {
       ))} */}
       {friends.map((friend: Friends) => (
         <div key={friend.username} className="friend-item">
-          <div className="friend-item-left">
-            <ProfilePicture
-              firstName={friend.firstname}
-              lastName={friend.lastname}
-            />
-            {friend.firstname} {friend.lastname}
+          <div className="friend-item-header">
+            <div className="friend-item-left">
+              <ProfilePicture
+                firstName={friend.firstname}
+                lastName={friend.lastname}
+              />
+              {friend.firstname} {friend.lastname}
+            </div>
+            <div className="friend-item-right">
+              {friend.balance < 0 && (
+                <span
+                  style={{
+                    backgroundColor: "rgb(246 214 214)",
+                    padding: "2px",
+                    borderRadius: "6px",
+                    color: "red",
+                  }}
+                >
+                  You owe CA$ {(friend.balance / 100).toFixed(2)}
+                </span>
+              )}
+              {friend.balance > 0 && (
+                <span
+                  style={{
+                    backgroundColor: "#aed1ae",
+                    padding: "2px",
+                    borderRadius: "6px",
+                    color: "green",
+                  }}
+                >
+                  Owes you CA$ {(friend.balance / 100).toFixed(2)}
+                </span>
+              )}
+              {friend.balance == 0 && (
+                <span
+                  style={{
+                    backgroundColor: "#e0e0e0",
+                    padding: "2px",
+                    borderRadius: "6px",
+                  }}
+                >
+                  You are settled up.
+                </span>
+              )}
+            </div>
           </div>
-          <div className="friend-item-right">
-            {friend.balance < 0 && (
-              <span
-                style={{
-                  backgroundColor: "#fca5a5",
-                  padding: "2px",
-                  borderRadius: "6px",
-                }}
+          {friend.groups.map((group: Group) => (
+            <div className="friend-group-item-header" key={group.groupName}>
+              <div
+                className="friend-item-left"
+                style={{ fontWeight: "100", color: "dimgray" }}
               >
-                You owe CAD $ {friend.balance}
-              </span>
-            )}
-            {friend.balance > 0 && (
-              <span
-                style={{
-                  backgroundColor: "#aed1ae",
-                  padding: "2px",
-                  borderRadius: "6px",
-                }}
-              >
-                Owes you CAD $ {friend.balance}
-              </span>
-            )}
-            {friend.balance == 0 && (
-              <span
-                style={{
-                  backgroundColor: "#e0e0e0",
-                  padding: "2px",
-                  borderRadius: "6px",
-                }}
-              >
-                You are settled up.
-              </span>
-            )}
+                {group.groupName}
+              </div>
+              <div className="friend-item-right">
+                {group.balance < 0 && (
+                  <span
+                    style={{
+                      color: "red",
+                    }}
+                  >
+                    CA$ {(group.balance / 100).toFixed(2)}
+                  </span>
+                )}
+                {group.balance > 0 && (
+                  <span
+                    style={{
+                      color: "green",
+                    }}
+                  >
+                    CA$ {(group.balance / 100).toFixed(2)}
+                  </span>
+                )}
+                {group.balance == 0 && <span>0.00</span>}
+              </div>
+            </div>
+          ))}
+          <div
+            style={{
+              display: "flex",
+              width: "100%",
+              marginTop: "10px",
+            }}
+          >
+            <button style={{ width: "100px" }}>Settle Up</button>
           </div>
         </div>
       ))}
