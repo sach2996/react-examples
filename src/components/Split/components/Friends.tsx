@@ -67,9 +67,10 @@ export default function Friends() {
                       backgroundColor: "#fca5a5",
                       padding: "2px",
                       borderRadius: "6px",
+                      color: "red",
                     }}
                   >
-                    You owe CAD $ {friend.balance}
+                    You owe CA$ {(friend.balance / 100).toFixed(2)}
                   </span>
                 )}
                 {friend.balance > 0 && (
@@ -78,9 +79,10 @@ export default function Friends() {
                       backgroundColor: "#aed1ae",
                       padding: "2px",
                       borderRadius: "6px",
+                      color: "green",
                     }}
                   >
-                    Owes you CAD $ {friend.balance}
+                    Owes you CA$ {(friend.balance / 100).toFixed(2)}
                   </span>
                 )}
                 {friend.balance == 0 && (
