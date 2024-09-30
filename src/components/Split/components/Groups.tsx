@@ -99,9 +99,10 @@ export default function Groups() {
                             backgroundColor: "#aed1ae",
                             padding: "2px",
                             borderRadius: "6px",
+                            color: "green",
                           }}
                         >
-                          You get CAD $ {groupItem.balance}
+                          You get CA$ {(groupItem.balance / 100).toFixed(2)}
                         </span>
                       )}
                       {groupItem.balance < 0 && (
@@ -110,9 +111,10 @@ export default function Groups() {
                             backgroundColor: "#fca5a5",
                             padding: "2px",
                             borderRadius: "6px",
+                            color: "red",
                           }}
                         >
-                          You owe CAD $ {groupItem.balance}
+                          You owe CA$ {(groupItem.balance / 100).toFixed(2)}
                         </span>
                       )}
                       {groupItem.balance == 0 && (
