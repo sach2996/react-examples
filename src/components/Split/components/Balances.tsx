@@ -93,7 +93,7 @@ export default function Balances() {
         </div>
       ))} */}
       {friends.map((friend: Friends) => (
-        <div key={friend.username} className="friend-item">
+        <div key={friend.username} className="balance-item">
           <div className="friend-item-header">
             <div className="friend-item-left">
               <ProfilePicture
