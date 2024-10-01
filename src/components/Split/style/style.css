@@ -209,6 +209,20 @@ button {
     color: white;
 }
 
+.balance-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    border: 1px solid #bebcbc;
+    border-radius: 4px;
+    /* font-size: large; */
+    font-weight: bold;
+    padding: 16px;
+    margin-bottom: 1rem;
+    background-color: white;
+}
+
 .friends-top-bar {
     display: flex;
     align-items: center;
@@ -225,7 +239,7 @@ button {
 
 .friend-item {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     width: 40%;
     border: 1px solid #bebcbc;
