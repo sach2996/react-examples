@@ -79,19 +79,7 @@ export default function Balances() {
           <button hidden>Settle Up</button>
         </span>
       </div>
-      {/* {balance.groups.map(
-        (item: Group) =>
-          item.groupName != "null" && (
-            <div className="balances-bottom-bar" key={item.groupName}>
-              {item.groupName} {item.balance}
-            </div>
-          )
-      )} */}
-      {/* {balance.friends.map((item: Friend) => (
-        <div className="balances-bottom-bar" key={item.username}>
-          {item.username} {item.balance}
-        </div>
-      ))} */}
+
       {friends.map((friend: Friends) => (
         <div key={friend.username} className="balance-item">
           <div className="friend-item-header">
