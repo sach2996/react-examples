@@ -60,7 +60,7 @@ interface Share {
 export default function Balances() {
   const [showModal, setShowModal] = useRecoilState(showModalAtom);
 
-  const balance = useRecoilValue(balanceAtom);
+  // const balance = useRecoilValue(balanceAtom);
   const friends = useRecoilValue(friendsAtom);
 
   const handleAddExpense = () => {
